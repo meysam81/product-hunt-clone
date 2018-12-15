@@ -1,0 +1,56 @@
+<!doctype html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Product Hunt Clone</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-dark fixed-top navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'index' %}">Product Hunt</a>
+
+      <!-- <div class="d-flex flex-column flex-md-row align-items-center  bg-white border-bottom shadow-sm"> -->
+      <!--   <a class="btn btn-outline-primary" href="#">Sign up / Sign In</a> -->
+      <!-- </div> -->
+      <a class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3 bg-white shadow-sm" href="#">Sign in / Sing up</a>
+
+    </nav>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Hunt Product</h1>
+          <p>We show goods, stuff and ideas that people come up to, and share them with the world. You can view, upvote and even share your own products here. Have fun!</p>
+        </div>
+      </div>
+
+      {% block content %}
+      {% endblock %}
+
+    </main>
+
+    <footer class="container">
+      <p>&copy; Meysam Azad {% now "Y" %}</p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+         ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
