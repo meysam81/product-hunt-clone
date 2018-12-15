@@ -139,3 +139,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # to deploy app on heroku
 django_heroku.settings(locals())
+
+# this part includes local settings that I do not wish to have on heroku
+# or other online hosts that I deploy my app on
+try:
+    from .local_settings import *
+except:
+    pass
