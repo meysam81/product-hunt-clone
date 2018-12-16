@@ -1,8 +1,54 @@
 {% extends "base.html" %}
+{% block title %}Login{% endblock %}
 {% block content %}
-<div class="container">
 
-  login
+<form method = "POST" action = "{% url 'login' %}">
+  {% csrf_token %}
+  <div class="container">
 
-</div> <!-- /container -->
+    <!-- first row -->
+    <div class = "row">
+      <div class = "col-md-3">
+        <h5>Username:</h5>
+      </div>
+      <div class = "col-md-4">
+        <input type = "text" name = "username" placeholder = "enter your username"/>
+      </div>
+    </div>
+
+    <!-- second row -->
+    <div class = "row">
+      <div class = "col-md-3">
+        <h5>Password:</h5>
+      </div>
+      <div class = "col-md-4">
+        <input type = "password" name = "password" placeholder = "enter your password"/>
+      </div>
+    </div>
+
+    <!-- third row -->
+    <div class = "row">
+      <div class = "col-md-3">
+      </div>
+      <div>
+        {% if error %}
+        <ul style = "color: red">
+          <li>{{ error }}</li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- forth row -->
+    <div class = "row">
+      <div class = "col-md-3">
+      </div>
+      <div class = "col-md-4">
+        <input class = "btn btn-primary" type = "submit" value = "Login" />
+      </div>
+    </div>
+
+  </div>
+</form>
+
 {% endblock %}
