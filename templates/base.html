@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Product Hunt Clone</title>
+    <title>{% block title %}Product Hunt Clone{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -21,8 +21,8 @@
       <img class="d-inline-block align-top" src="{% static 'logo.png' %}" height = 30/>
       <h5 class="navbar-brand my-0 mr-md-auto"><a style = "text-decoration: none" href="{% url 'index' %}" class = "no-link">Product Hunt</a></h5>
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="btn btn-outline-primary" href="#">Sign up</a>
-        <a class="btn btn-outline-primary" href="#">Login</a>
+        <a class="btn btn-outline-primary" href="{% url 'signup' %}">Sign up</a>
+        <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a>
       </nav>
     </div>
 
@@ -40,6 +40,7 @@
       {% endblock %}
 
     </main>
+    <hr/>
 
     <footer class="container">
       <p>&copy; Meysam Azad {% now "Y" %}</p>
