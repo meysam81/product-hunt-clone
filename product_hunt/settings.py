@@ -93,7 +93,7 @@ DATABASES = {
 # it may be overriden by local_settings.py, so we don't really
 # neet it urgently
 try:
-    DATABASES['default'] = dj_database_url.config(default = config('DB_URL'))
+    DATABASES['default'] = dj_database_url.config(default = config('DATABASE_URL'))
 except:
     pass
 
