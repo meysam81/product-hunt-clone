@@ -38,4 +38,6 @@ def login(request):
     return render(request, 'account/login.html')
 
 def logout(request):
-    return HttpResponse('logout')
+    if request.method == 'POST':
+        auth.logout(request)
+        return redirect('index')

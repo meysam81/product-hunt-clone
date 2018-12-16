@@ -21,8 +21,16 @@
       <img class="d-inline-block align-top" src="{% static 'logo.png' %}" height = 30/>
       <h5 class="navbar-brand my-0 mr-md-auto"><a style = "text-decoration: none" href="{% url 'index' %}" class = "no-link">Product Hunt</a></h5>
       <nav class="my-2 my-md-0 mr-md-3">
+        {% if not user.is_authenticated %}
         <a class="btn btn-outline-primary" href="{% url 'signup' %}">Sign up</a>
         <a class="btn btn-outline-primary" href="{% url 'login' %}">Login</a>
+        {% else %}
+        <form action = "{% url 'logout' %}" method = "POST">
+          {% csrf_token %}
+          <input type = "submit" class="btn btn-outline-primary" value = "Logout"/>
+        </form>
+        {% endif %}
+
       </nav>
     </div>
 
