@@ -89,8 +89,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
     }
 }
-DATABASES['default'] = dj_database_url.config(
-    default = 'postgres://servdrlgarypwb:3a576d784e232150345937d39e4e0e7eb45239529dddf3f2b2d9e23238fedc1d@ec2-54-243-150-10.compute-1.amazonaws.com:5432/dc92rntv4t263h')
+
+# it may be overriden by local_settings.py, so we don't really
+# neet it urgently
+try:
+    DATABASES['default'] = dj_database_url.config(default = config('DB_URL'))
+except:
+    pass
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
