@@ -20,9 +20,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+# home page
+from product.views import index
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('product.urls')),
+    path('product/', include('product.urls')),
     path('account/', include('account.urls')),
+    path('', index, name = 'index'),
 ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) \
 + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
