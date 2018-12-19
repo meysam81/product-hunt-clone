@@ -11,15 +11,15 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href = "{% static 'open-iconic/font/css/open-iconic-bootstrap.css' %}" rel = "stylesheet">
+    {% block icon %}{% endblock %}
     <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
   </head>
 
   <body>
 
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-      <img class="d-inline-block align-top" src="{% static 'logo.png' %}" height = 30/>
-      <h5 class="navbar-brand my-0 mr-md-auto"><a style = "text-decoration: none" href="{% url 'index' %}" class = "no-link">Product Hunt</a></h5>
+      <h5 class="navbar-brand my-0 mr-md-auto"><a style = "text-decoration: none" href="{% url 'index' %}" class = "no-link"><img class="d-inline-block align-top" src="{% static 'logo.png' %}" height = 30/>Product Hunt</a></h5>
       <nav class="my-2 my-md-0 mr-md-3">
         {% if not user.is_authenticated %}
         <a class="btn btn-outline-primary" href="{% url 'signup' %}">Sign up</a>
@@ -27,6 +27,7 @@
         {% else %}
         <form action = "{% url 'logout' %}" method = "POST">
           {% csrf_token %}
+          <a class="btn" href="{% url 'add_product' %}"><span class="oi oi-plus"></span></a>
           <input type = "submit" class="btn btn-outline-primary" value = "Logout"/>
         </form>
         {% endif %}
@@ -36,6 +37,7 @@
 
     <main role="main">
 
+      {% block header %}
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
@@ -43,6 +45,7 @@
           <p>We show goods, stuff and ideas that people come up to, and share them with the world. You can view, upvote and even share your own products here. Have fun!</p>
         </div>
       </div>
+      {% endblock %}
 
       {% block content %}
       {% endblock %}
@@ -50,7 +53,7 @@
     </main>
     <hr/>
 
-    <footer class="container">
+    <footer class="container text-center">
       <p>&copy; Meysam Azad {% now "Y" %}</p>
     </footer>
 

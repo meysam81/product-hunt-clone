@@ -105,3 +105,4 @@ venv.bak/
 staticfiles/*
 static/*
 media/*
+products/static/

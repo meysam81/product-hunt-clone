@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block header %}{% endblock %}
+{% block content %}
+<div class="container">
+  <!-- Example row of columns -->
+  {% if product %}
+  {% block title %}{{ product.title }}{% endblock %}
+  <div class="containter">
+    <div class="row">
+      <div class="col-3">
+        <h1><img height = 30 src = "{{ product.icon.url }}"/> <strong><a style="text-decoration: none" href="{{ product.url }}">{{ product.title }}</a></strong></h1>
+      </div>
+      <div class="col-7 text-right">
+        <form action="{% url 'upvote' product.id %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-primary btn-lg" value="{{ product.votes_total }} Upvote &#x21E7;"/>
+        </form>
+      </div>
+    </div>
+  </div>
+  <img height=400 src="{{ product.image.url }}"/>
+  <h2><span class="oi oi-magnifying-glass"></span> Hunted by {{ product.hunter }}</h2>
+  <p>{{ product.body }}</p>
+  <small><span class="oi oi-clock"></span> {{ product.pub_date_pretty }}</small>
+  <hr/>
+
+  <form id="upvote" method="POST" action="{% url 'upvote' product.id %}">
+    {% csrf_token %}
+    <input type="hidden"/>
+  </form>
+
+  {% endif %}
+
+</div> <!-- /container -->
+
+{% endblock %}

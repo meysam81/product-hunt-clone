@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Signup{% endblock %}
+{% block header %}{% endblock %}
+
+{% block content %}
+
+<form method = "POST" action = "{% url 'signup' %}">
+  {% csrf_token %}
+  <div class="container">
+
+    <!-- first row -->
+    <div class = "row">
+      <div class = "col-md-3">
+        <h5>Username:</h5>
+      </div>
+      <div class = "col-md-4">
+        <input type = "text" name = "username" placeholder = "enter your username"/>
+      </div>
+    </div>
+
+    <!-- second row -->
+    <div class = "row">
+      <div class = "col-md-3">
+        <h5>Password:</h5>
+      </div>
+      <div class = "col-md-4">
+        <input type = "password" name = "password1" placeholder = "enter your password"/>
+      </div>
+    </div>
+
+    <!-- third row -->
+    <div class = "row">
+      <div class = "col-md-3">
+        <h5>Confirmation Password:</h5>
+      </div>
+      <div class = "col-md-4">
+        <input type = "password" name = "password2" placeholder = "enter your password again"/>
+      </div>
+    </div>
+
+    <!-- forth row -->
+    <div class = "row">
+      <div class = "col-md-3">
+      </div>
+      <div>
+        {% if error %}
+        <ul style = "color: red">
+          <li>{{ error }}</li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- fifth row -->
+    <div class = "row">
+      <div class = "col-md-3">
+      </div>
+      <div class = "col-md-4">
+        <input class = "btn btn-primary" type = "submit" value = "Sign Up" />
+      </div>
+    </div>
+
+  </div>
+</form>
+
+{% endblock %}

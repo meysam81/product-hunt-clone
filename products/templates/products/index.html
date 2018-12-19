@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <!-- Example row of columns -->
+  {% if products.count > 0 %}
+  {% for product in products.all %}
+  <h2><img height=30 src = "{{ product.icon.url }}"/> {{ product.title }}</h2>
+  <p>{{ product.summary }}</p>
+  <small>{{ product.pub_date_pretty }}</small>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <p><a class="btn btn-secondary" href="{% url 'product_detail' product.id%}" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-2">
+        <form action="{% url 'upvote' product.id %}" method="POST">
+          {% csrf_token %}
+          <input class="btn btn-secondary" type="submit" value="{{ product.votes_total }} Upvote &#x21E7;"/>
+        </form>
+      </div>
+    </div>
+  </div>
+  <hr/>
+
+  <form id="upvote" method="POST" action="{% url 'upvote' product.id %}">
+    {% csrf_token %}
+    <input type="hidden"/>
+  </form>
+
+  {% endfor %}
+  {% else %}
+  No products registered yet.
+  {% endif %}
+
+
+</div> <!-- /container -->
+
+{% endblock %}
