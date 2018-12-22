@@ -4,7 +4,9 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 
-# Create your views here.
+from rest_framework import viewsets as vs
+from .serializers import UserSerializer
+
 def signup(request):
     if request.method == 'POST':
         formData = request.POST
@@ -41,3 +43,8 @@ def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         return redirect('index')
+
+
+class UserViewSet(vs.ModelViewSet):
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer

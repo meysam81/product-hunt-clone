@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Product
+from rest_framework import viewsets as vs
+from .serializers import ProductSerializer
 
-# Create your views here.
+
 def index(request):
     products = Product.latest_products()
     return render(request, 'products/index.html', {'products': products})
@@ -39,3 +41,7 @@ def upvote(request, product_id):
         product = get_object_or_404(Product, pk = product_id)
         product.upvote()
         return redirect('product_detail', product_id)
+
+class ProductViewSet(vs.ModelViewSet):
+    queryset = Product.latest_products()
+    serializer_class = ProductSerializer
